@@ -31,7 +31,7 @@ const RandomDogImage = () => {
 
   return (
     <div>
-      <h1>Guess the dog breed</h1>
+      <h1>Guess the dog</h1>
       {imageUrl ? (
         <div>
           <img src={imageUrl} alt="Random Dog" style={{ maxWidth: "400px", borderRadius: "8px" }} />
