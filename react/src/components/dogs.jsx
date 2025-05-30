@@ -15,7 +15,17 @@ const fetchApi = async (url) => {
   }
 };
 
-const RandomDogImage = () => {
+const extractBreedFromUrl = (url) => {
+    const parts = url.split("/");
+    const breed = parts[parts.findIndex(p => p === "breeds") + 1];
+    return breed ? breed.replace("-", " ") : "Unknown breed";
+};
+
+const capitalizeWords = (text) => {
+    text.split(" ").map(w => w.chartAt(0).toUpperCase() + w.slice(1)).join(" ");
+}
+
+const GuessTheDog = () => {
   const [imageUrl, setImageUrl] = useState(null);
 
   const loadDogImage = async () => {
