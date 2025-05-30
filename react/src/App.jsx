@@ -1,11 +1,11 @@
 import { useState } from 'react'
 import './App.css'
-import RandomDogImage from './components/dogs';
+import dogs from './components/dogs';
 
 function App() {
   return (
     <div className="App">
-      <RandomDogImage />
+      <dogs />
     </div>
   );
 }
