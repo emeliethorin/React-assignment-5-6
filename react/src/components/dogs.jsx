@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-// Function to fetch from the Dog CEO API
+// Fetch dogs
 const fetchApi = async (url) => {
   try {
     const response = await fetch(url);
