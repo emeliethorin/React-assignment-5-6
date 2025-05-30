@@ -41,18 +41,25 @@ const GuessTheDog = () => {
 
   return (
     <div>
-      <h1>Guess the dog</h1>
-      {imageUrl ? (
-        <div>
-          <img src={imageUrl} alt="Random Dog" style={{ maxWidth: "400px", borderRadius: "8px" }} />
-          <br />
-          <button onClick={loadDogImage}>Fetch Another</button>
-        </div>
-      ) : (
+      <h1>Guess the dog 🐶</h1>
+      {loading ? (
         <p>Loading...</p>
+      ) : (
+        <>
+          {imageUrl && <
+            img src={imageUrl} 
+            alt="Random Dog" 
+            style={{ maxWidth: "400px", borderRadius: "8px" }}  />}
+          <h2 className="question">Is this dog a {capitalizeWords(displayedBreed)} ?</h2>
+          <div>
+            <button onClick={() => handleAnswer("yes")} classname="yes-btn">Yes</button>
+            <button onClick={() => handleAnswer("no")} classname="no-btn">No</button>
+          </div>
+          {feedback && <h3>{feedback}</h3>}
+       </> 
       )}
     </div>
   );
 };
 
-export default RandomDogImage;
+export default GuessTheDog;
