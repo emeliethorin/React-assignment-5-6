@@ -25,19 +25,40 @@ const capitalizeWords = (text) => {
     text.split(" ").map(w => w.chartAt(0).toUpperCase() + w.slice(1)).join(" ");
 }
 
-const GuessTheDog = () => {
-  const [imageUrl, setImageUrl] = useState(null);
+const DogGuessingGame = () => {
+    const [imageUrl, setImageUrl] = useState ("");
+    const [dogBreed, setDogBreed] = useState ("");
+    const [displayedBreed, setDisplayBreed] = useState ("");
+    const [feedback, setFeedback] = useState ("");
+    const [loading, setLoading] = useState ("");
 
-  const loadDogImage = async () => {
-    const result = await fetchApi("https://dog.ceo/api/breeds/image/random");
-    if (result && result.status === "success") {
-      setImageUrl(result.message);
+    const getDog = async () => {
+        setLoading(true);
+        setFeedback("");
+
+        const result = await fetchApi("https://dog.ceo/api/breeds/image/random");
+        
+        if (result?.status === "success") {
+            const breed = extractBreedFromUrl(result.message);
+            setImageUrl(result.message);
+            setDogBreed(breed);
+            setDisplayBreed(breed);
+        }
+
+        setLoading(false);
+    };
+
+    const handleAnswer = (answer) => {
+        const isCorrect = 
+        (answer === "yes" && displayedBreed === dogBreed) ||
+        (answer === "no" && displayedBreed !== dogBreed);
+        setFeedback(isCorrect ? "Correct answer! 😄" : "Sorry, that was incorrect 🫤");
+        setTimeout (() => getDog(), 1500);
     }
-  };
 
-  useEffect(() => {
-    loadDogImage();
-  }, []);
+    useEffect (() => {
+        getDog();
+    }, []);
 
   return (
     <div>
@@ -62,4 +83,4 @@ const GuessTheDog = () => {
   );
 };
 
-export default GuessTheDog;
+export default DogGuessingGame;
