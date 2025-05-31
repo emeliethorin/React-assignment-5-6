@@ -31,10 +31,13 @@ const DogGuessingGame = () => {
     const [displayedBreed, setDisplayBreed] = useState ("");
     const [feedback, setFeedback] = useState ("");
     const [loading, setLoading] = useState ("");
+    const [score, setScore] = useState ({ correct: 0, total: 0});
+    const [answered,setAnswered] = useState(false);
 
     const getDog = async () => {
         setLoading(true);
         setFeedback("");
+        setAnswered(false);
 
         const result = await fetchApi("https://dog.ceo/api/breeds/image/random");
         
@@ -52,8 +55,13 @@ const DogGuessingGame = () => {
         const isCorrect = 
         (answer === "yes" && displayedBreed === dogBreed) ||
         (answer === "no" && displayedBreed !== dogBreed);
+
         setFeedback(isCorrect ? "Correct answer! 😄" : "Sorry, that was incorrect 🫤");
-        setTimeout (() => getDog(), 1500);
+        setScore ((prev) => ({
+          correct: prev.correct + (isCorrect ? 1 : 0),
+          totalt: prev.total + 1
+        }));
+        setAnswered(true);
     }
 
     useEffect (() => {
@@ -77,6 +85,8 @@ const DogGuessingGame = () => {
             <button onClick={() => handleAnswer("no")} classname="no-btn">No</button>
           </div>
           {feedback && <h3>{feedback}</h3>}
+          {answered && <button onClick={getDog}>Next</button>}
+          <p>Score: {score.correct} / {score.total} </p>
        </> 
       )}
     </div>
