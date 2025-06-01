@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from react-router-dom;
+import { useNavigate } from "react-router-dom";
 
 function RegistrationForm() {
     const navigate = useNavigate();
@@ -9,7 +9,7 @@ function RegistrationForm() {
     });
 
     const handleChange = (e) => {
-        const { username, value } = e.target;
+        const { name, value } = e.target;
         setInput((prev) => ({
             ...prev,
             [username]: value,
@@ -43,16 +43,27 @@ function RegistrationForm() {
                 <h1>Register to play</h1>
                     <form onSubmit={handleSubmit}>
                         <div>
-                            <label htmlFor="username">Password:</label><br/>
-                            <input 
-                            type="password"
-                            id="password"
-                            name="password"
-                            value={input.password}
-                            onChange={handleChange}
-                            required
-                            />
-                        </div>
+                        <label htmlFor="username">Username:</label>
+                        <br/>
+                        <input type="text" 
+                        id="username"
+                        name="username"
+                        value={input.username}
+                        onChange={handleChange}
+                        required
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="password">Password:</label>
+                        <br/>
+                        <input type="password"
+                        id="password"
+                        name="password"
+                        value={input.password}
+                        onChange={handleChange}
+                        required
+                        />
+                    </div>
                         {error && <p style={{ color: "red"}}>{error}</p>}
                         {showSuccess && (
                             <p style={{ color: green }}>
@@ -64,6 +75,6 @@ function RegistrationForm() {
                     </form>
             </div>
     );
-}
+};
 
 export default RegistrationForm;

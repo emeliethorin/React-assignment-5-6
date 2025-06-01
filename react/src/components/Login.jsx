@@ -11,7 +11,7 @@ function Login() {
     const [error, setError] = useState("");
 
     const handleChange = (e) => {
-        const { username, value } = e.target;
+        const { name, value } = e.target;
         setInput((prev) => ({
             ...prev,
             [username]: value,
@@ -69,5 +69,7 @@ function Login() {
                 <button type="submit" className="btn">Login</button>
             </form>
         </div>
-    )
- }
+    );
+ };
+
+ export default Login;
