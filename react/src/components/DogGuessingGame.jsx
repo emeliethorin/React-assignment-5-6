@@ -68,16 +68,17 @@ const DogGuessingGame = () => {
         setLoading(false);
     };
 
-    const handleAnswer = (answer) => {
+    const handleAnswer = (answerYes) => {
         const isCorrect = 
-        (answer === "yes" && displayedBreed === dogBreed) ||
-        (answer === "no" && displayedBreed !== dogBreed);
+        (displayedBreed === breed && answerYes) ||
+        (displayedBreed !==breed && !answerYes);
 
         setFeedback(isCorrect ? "Correct answer! 😄" : "Sorry, that was incorrect 🫤");
         setScore ((prev) => ({
           correct: prev.correct + (isCorrect ? 1 : 0),
           totalt: prev.total + 1
         }));
+
         setAnswered(true);
     }
 
@@ -89,13 +90,13 @@ const DogGuessingGame = () => {
     <div>
       <h1>Guess the dog 🐶</h1>
       {loading ? (
-        <p>Loading...</p>
+        <p>Loading dog...</p>
       ) : (
         <>
           {imageUrl && <
             img src={imageUrl} 
             alt="Random Dog" 
-            style={{ maxWidth: "400px", borderRadius: "8px" }}  />}
+            style={{ maxWidth: "400px", borderRadius: "5px" }}  />}
           <h2 className="question">Is this dog a {capitalizeWords(displayedBreed)} ?</h2>
           <div>
             <button onClick={() => handleAnswer("yes")} classname="yes-btn">Yes</button>
