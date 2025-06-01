@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import '../Form.css'
 
 function RegistrationForm() {
     const navigate = useNavigate();
@@ -8,15 +9,15 @@ function RegistrationForm() {
         password: "",
     });
 
+    const [error, setError] = useState("");
+    const [showSuccess, setShowSuccess] = useState(false);
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setInput((prev) => ({
             ...prev,
-            [username]: value,
+            [name]: value,
         }));
-
-    const [error, setError] = useState("");
-    const [showSuccess, setShowSuccess] = useState(false);
     };
 
     const handleSubmit = (e) => {
@@ -45,7 +46,7 @@ function RegistrationForm() {
                         <div>
                         <label htmlFor="username">Username:</label>
                         <br/>
-                        <input type="text" 
+                        <input className="input" type="text" 
                         id="username"
                         name="username"
                         value={input.username}
@@ -56,7 +57,7 @@ function RegistrationForm() {
                     <div>
                         <label htmlFor="password">Password:</label>
                         <br/>
-                        <input type="password"
+                        <input className="input" type="password"
                         id="password"
                         name="password"
                         value={input.password}
@@ -66,7 +67,7 @@ function RegistrationForm() {
                     </div>
                         {error && <p style={{ color: "red"}}>{error}</p>}
                         {showSuccess && (
-                            <p style={{ color: green }}>
+                            <p style={{ color: "green" }}>
                                 Success! You are now being signed in..
                             </p>
                         )}

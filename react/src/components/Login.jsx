@@ -14,7 +14,7 @@ function Login() {
         const { name, value } = e.target;
         setInput((prev) => ({
             ...prev,
-            [username]: value,
+            [name]: value,
         }));
     };
 
@@ -46,7 +46,7 @@ function Login() {
                 <div>
                     <label htmlFor="username">Username:</label>
                     <br/>
-                    <input type="text" 
+                    <input className="input" type="text" 
                     id="username"
                     name="username"
                     value={input.username}
@@ -57,7 +57,7 @@ function Login() {
                 <div>
                     <label htmlFor="password">Password:</label>
                     <br/>
-                    <input type="password"
+                    <input className="input" type="password"
                     id="password"
                     name="password"
                     value={input.password}
