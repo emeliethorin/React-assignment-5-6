@@ -24,6 +24,13 @@ const extractBreedFromUrl = (url) => {
 const capitalizeWords = (text) => 
     text.split(" ").map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
 
+//Handle articles before breeds
+const getArticle = (word) => {
+  if (!word) return "a";
+  const firstLetter = word.trim().charAt(0).toLowerCase();
+  return ["a", "e", "i", "o", "u"].includes(firstLetter) ? "an" : "a";
+};
+
 // Game logic
 const DogGuessingGame = () => {
     const [imageUrl, setImageUrl] = useState ("");
@@ -103,11 +110,15 @@ const DogGuessingGame = () => {
           {imageUrl && <
             img src={imageUrl} 
             alt="Random Dog" 
-            style={{ maxWidth: "400px", borderRadius: "5px" }} className="dog-img" />}
-          <h2 className="question">Is this dog a {capitalizeWords(displayedBreed)} ?</h2>
+            className="dog-img" />}
+          <h2 className="question">Is this dog {getArticle(displayedBreed)} {capitalizeWords(displayedBreed)}?</h2>
           <div>
-            <button onClick={() => handleAnswer(true)} className="btn yes-btn">Yes</button>
-            <button onClick={() => handleAnswer(false)} className="btn no-btn">No</button>
+            <button onClick={() => 
+              handleAnswer(true)} disabled={answered}
+              className="btn yes-btn">Yes</button>
+            <button onClick={() => 
+              handleAnswer(false)} disabled={answered}
+              className="btn no-btn">No</button>
           </div>
           {feedback && <h3 className={`feedback ${feedback.includes("Correct") ? "correct" : "incorrect"}`}>{feedback}</h3>}
           {answered && <button onClick={getDog} className="btn next-btn">Next</button>}
