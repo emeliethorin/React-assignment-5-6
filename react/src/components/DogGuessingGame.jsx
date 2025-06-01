@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../DogGuessingGame.css";
 
-// Fetch dogs
 const fetchApi = async (url) => {
   try {
     const response = await fetch(url);
@@ -15,7 +14,7 @@ const fetchApi = async (url) => {
     return null;
   }
 };
-
+// Get breeds from API
 const extractBreedFromUrl = (url) => {
     const parts = url.split("/");
     const breed = parts[parts.findIndex(p => p === "breeds") + 1];
@@ -25,6 +24,7 @@ const extractBreedFromUrl = (url) => {
 const capitalizeWords = (text) => 
     text.split(" ").map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
 
+// Game logic
 const DogGuessingGame = () => {
     const [imageUrl, setImageUrl] = useState ("");
     const [dogBreed, setDogBreed] = useState ("");
@@ -85,6 +85,14 @@ const DogGuessingGame = () => {
         getDog();
     }, []);
 
+    // Start new round
+    const handleRestart = () => {
+      setScore({ correct: 0, total: 0});
+      setFeedback("");
+      setAnswered(false);
+      getDog();
+    }
+
   return (
     <div>
       <h1>Guess the dog 🐶</h1>
@@ -104,6 +112,7 @@ const DogGuessingGame = () => {
           {feedback && <h3 className={`feedback ${feedback.includes("Correct") ? "correct" : "incorrect"}`}>{feedback}</h3>}
           {answered && <button onClick={getDog} className="btn next-btn">Next</button>}
           <p className="game-data">Score: {score.correct} / Attempts: {score.total} </p>
+          <button onClick={handleRestart} className="btn restart-btn">Start over</button>
        </> 
       )}
     </div>
