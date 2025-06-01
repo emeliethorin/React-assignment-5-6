@@ -1,6 +1,23 @@
+.btn {
+    padding: 10px 20px 10px 20px;
+    border-radius: 4px;
+    margin: 0px 4px 4px 4px;
+    border-style: solid;
+    border-color: white;
+    cursor: pointer;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+}
+
 .yes-btn {
     background-color: rgb(0, 170, 0);
     color: white;
+}
+
+.yes-btn:hover {
+    background-color: #61c466;
 }
 
 .no-btn {
@@ -8,17 +25,17 @@
     color: white;
 }
 
+.no-btn:hover {
+    background-color: #f34848;
+  }
+
 .next-btn {
     color: white;
     background-color: rgb(117, 54, 233);
 }
-
-.btn {
-    padding: 10px 20px 10px 20px;
-    border-radius: 4px;
-    margin: 0px 4px 4px 4px;
-    border-style: none;
-}
+.next-btn:hover {
+    background-color: #8a19cc;
+  }
 
 .dog-img {
     max-width: 400px;
@@ -53,4 +70,10 @@
 .game-data {
     font-size: 18px;
     font-weight: 500;
+}
+
+.restart-btn {
+    background-color: black;
+    color: White;
+    margin-top: 20px;
 }
