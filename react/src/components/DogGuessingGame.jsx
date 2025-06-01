@@ -46,7 +46,24 @@ const DogGuessingGame = () => {
             setImageUrl(result.message);
             setDogBreed(breed);
             setDisplayBreed(breed);
+
+        const useCorrect = Math.random() < 0.5;
+        if (useCorrect) {
+          setDisplayBreed(breed);
+        } else {
+          const allBreeds = await fetchApi("https://dog.ceo/api/breeds/image/random");
+          if (allBreeds?.status === "success") {
+            const breedList = Object.keys(allBreeds.message);
+            let randomBreed = "";
+            do {
+              randomBreed = breedList[matchMedia.floor(Math.random() * breedList.length)];
+            } while (randomBreed === breed);
+            setDisplayBreed(randomBreed);
+          } else {
+            setDisplayBreed(breed);
+          }
         }
+      }
 
         setLoading(false);
     };
