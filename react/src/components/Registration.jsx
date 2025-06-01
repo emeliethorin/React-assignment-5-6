@@ -1,31 +1,69 @@
-import { useState } from "react";
-import React { useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from react-router-dom;
 
-function Register() {
+function RegistrationForm() {
     const navigate = useNavigate();
-    const [showSuccess, setShowSuccess] = useState(false);
     const [input, setInput] = useState({
-        name: "",
-        email: "",
-        password: "";
+        username: "",
+        password: "",
     });
+
+    const handleChange = (e) => {
+        const { username, value } = e.target;
+        setInput((prev) => ({
+            ...prev,
+            [username]: value,
+        }));
+
+    const [error, setError] = useState("");
+    const [showSuccess, setShowSuccess] = useState(false);
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        localStorage.setItem("user", JSON.stringify(input));
+        if (!input.username || !input.password) {
+            setError("Username and password is required");
+            return;
+        } 
+
+        localStorage.setItem("username", input.username);
+        localStorage.setItem("password", input.password);
+
+        setError("");
         setShowSuccess(true);
         setTimeout(() => {
             navigate("/login");
-        }, 3000);
+        }, 2000);
     };
 
+
     return (
-        <>
-        <h1>Register to play</h1>
+    
             <div className="container">
-                <h2>Create account</h2>
+                <h1>Register to play</h1>
+                    <form onSubmit={handleSubmit}>
+                        <div>
+                            <label htmlFor="username">Password:</label><br/>
+                            <input 
+                            type="password"
+                            id="password"
+                            name="password"
+                            value={input.password}
+                            onChange={handleChange}
+                            required
+                            />
+                        </div>
+                        {error && <p style={{ color: "red"}}>{error}</p>}
+                        {showSuccess && (
+                            <p style={{ color: green }}>
+                                Success! You are now being signed in..
+                            </p>
+                        )}
+
+                        <button type="submit">Register</button>
+                    </form>
             </div>
-        </>
-    )
+    );
 }
+
+export default RegistrationForm;
