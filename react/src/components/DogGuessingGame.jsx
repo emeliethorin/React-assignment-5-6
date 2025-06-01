@@ -124,6 +124,7 @@ const DogGuessingGame = () => {
           {answered && <button onClick={getDog} className="btn next-btn">Next</button>}
           <p className="game-data">Score: {score.correct} / Attempts: {score.total} </p>
           <button onClick={handleRestart} className="btn restart-btn">Start over</button>
+          <p className="note">Note that the game includes more than 100 different breeds.. Good luck!</p>
        </> 
       )}
     </div>
