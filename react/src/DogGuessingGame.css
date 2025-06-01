@@ -1,0 +1,56 @@
+.yes-btn {
+    background-color: rgb(0, 170, 0);
+    color: white;
+}
+
+.no-btn {
+    background-color: rgb(218, 8, 8);
+    color: white;
+}
+
+.next-btn {
+    color: white;
+    background-color: rgb(117, 54, 233);
+}
+
+.btn {
+    padding: 10px 20px 10px 20px;
+    border-radius: 4px;
+    margin: 0px 4px 4px 4px;
+    border-style: none;
+}
+
+.dog-img {
+    max-width: 400px;
+    max-height: 400px;
+}
+
+.feedback {
+    font-size: 24px;
+    letter-spacing: 3px;
+    transition: text-shadow 0.3s ease;
+}
+
+
+.correct {
+    color: #4CAF50;
+    text-shadow:
+      0 0 5px #ffffff,
+      0 0 10px #4CAF50,
+      0 0 20px #4CAF50,
+      0 0 40px #4CAF50;
+  }
+  
+  .incorrect {
+    color: #f44336;
+    text-shadow:
+      0 0 5px #ffffff,
+      0 0 10px #f44336,
+      0 0 20px #f44336,
+      0 0 40px #f44336;
+  }
+
+.game-data {
+    font-size: 18px;
+    font-weight: 500;
+}
