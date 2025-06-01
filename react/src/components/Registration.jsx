@@ -68,11 +68,13 @@ function RegistrationForm() {
                         {error && <p style={{ color: "red"}}>{error}</p>}
                         {showSuccess && (
                             <p style={{ color: "green" }}>
-                                Success! You are now being signed in..
+                                Success! <br/>You are now being redirected..
                             </p>
                         )}
 
                         <button type="submit" className="btn">Register</button>
+                        <p><a href="/Login">Already have an account? Login here</a></p>
+
                     </form>
             </div>
     );
