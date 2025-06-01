@@ -21,9 +21,8 @@ const extractBreedFromUrl = (url) => {
     return breed ? breed.replace("-", " ") : "Unknown breed";
 };
 
-const capitalizeWords = (text) => {
-    text.split(" ").map(w => w.chartAt(0).toUpperCase() + w.slice(1)).join(" ");
-}
+const capitalizeWords = (text) => 
+    text.split(" ").map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
 
 const DogGuessingGame = () => {
     const [imageUrl, setImageUrl] = useState ("");
@@ -45,18 +44,17 @@ const DogGuessingGame = () => {
             const breed = extractBreedFromUrl(result.message);
             setImageUrl(result.message);
             setDogBreed(breed);
-            setDisplayBreed(breed);
 
         const useCorrect = Math.random() < 0.5;
         if (useCorrect) {
           setDisplayBreed(breed);
         } else {
-          const allBreeds = await fetchApi("https://dog.ceo/api/breeds/image/random");
+          const allBreeds = await fetchApi("https://dog.ceo/api/breeds/list/all");
           if (allBreeds?.status === "success") {
             const breedList = Object.keys(allBreeds.message);
             let randomBreed = "";
             do {
-              randomBreed = breedList[matchMedia.floor(Math.random() * breedList.length)];
+              randomBreed = breedList[Math.floor(Math.random() * breedList.length)];
             } while (randomBreed === breed);
             setDisplayBreed(randomBreed);
           } else {
@@ -70,13 +68,13 @@ const DogGuessingGame = () => {
 
     const handleAnswer = (answerYes) => {
         const isCorrect = 
-        (displayedBreed === breed && answerYes) ||
-        (displayedBreed !==breed && !answerYes);
+        (displayedBreed === dogBreed && answerYes) ||
+        (displayedBreed !== dogBreed && !answerYes);
 
         setFeedback(isCorrect ? "Correct answer! 😄" : "Sorry, that was incorrect 🫤");
         setScore ((prev) => ({
           correct: prev.correct + (isCorrect ? 1 : 0),
-          totalt: prev.total + 1
+          total: prev.total + 1
         }));
 
         setAnswered(true);
@@ -99,12 +97,12 @@ const DogGuessingGame = () => {
             style={{ maxWidth: "400px", borderRadius: "5px" }}  />}
           <h2 className="question">Is this dog a {capitalizeWords(displayedBreed)} ?</h2>
           <div>
-            <button onClick={() => handleAnswer("yes")} classname="yes-btn">Yes</button>
-            <button onClick={() => handleAnswer("no")} classname="no-btn">No</button>
+            <button onClick={() => handleAnswer(true)} className="yes-btn">Yes</button>
+            <button onClick={() => handleAnswer(false)} className="no-btn">No</button>
           </div>
           {feedback && <h3>{feedback}</h3>}
           {answered && <button onClick={getDog}>Next</button>}
-          <p>Score: {score.correct} / {score.total} </p>
+          <p>Score: {score.correct} / Attempts: {score.total} </p>
        </> 
       )}
     </div>
