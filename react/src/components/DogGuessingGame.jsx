@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../DogGuessingGame.css";
+import { useNavigate } from "react-router-dom";
 
 const fetchApi = async (url) => {
   try {
@@ -14,6 +15,7 @@ const fetchApi = async (url) => {
     return null;
   }
 };
+
 // Get breeds from API
 const extractBreedFromUrl = (url) => {
     const parts = url.split("/");
@@ -100,6 +102,16 @@ const DogGuessingGame = () => {
       getDog();
     }
 
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+      localStorage.removeItem("username");
+      localStorage.removeItem("password");
+
+      // Redirect to login page
+      navigate("/login");
+    }
+
   return (
     <div>
       <h1>Guess the dog 🐶</h1>
@@ -121,10 +133,11 @@ const DogGuessingGame = () => {
               className="btn no-btn">No</button>
           </div>
           {feedback && <h3 className={`feedback ${feedback.includes("Correct") ? "correct" : "incorrect"}`}>{feedback}</h3>}
-          {answered && <button onClick={getDog} className="btn next-btn">Next</button>}
+          {answered && <button onClick={getDog} className="btn next-btn">Next dog</button>}
           <p className="game-data">Score: {score.correct} / Attempts: {score.total} </p>
           <button onClick={handleRestart} className="btn restart-btn">Start over</button>
-          <p className="note">Note that the game includes more than 100 different breeds.. Good luck!</p>
+          <button onClick={handleLogout} className="btn logout-btn">Logout</button>
+          <p className="note">Note that the game includes more than 100 different breeds. Good luck!</p>
        </> 
       )}
     </div>
