@@ -1,0 +1,21 @@
+.container {
+    min-width: 300px;
+    min-height: 400px;
+    background-color: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.input {
+    width: 80%;
+    padding: 10px;
+    margin: 10px;
+    border: 1.5px solid rgb(202, 202, 202);
+    font-size: 16px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.input:focus {
+    border-color: #c4d4e6;
+}
