@@ -60,7 +60,7 @@ function RegistrationForm() {
                             </p>
                         )}
 
-                        <button type="submit">Register</button>
+                        <button type="submit" className="btn">Register</button>
                     </form>
             </div>
     );
