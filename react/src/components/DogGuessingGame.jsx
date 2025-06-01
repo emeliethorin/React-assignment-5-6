@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import "../DogGuessingGame.css";
 
 // Fetch dogs
 const fetchApi = async (url) => {
@@ -94,15 +95,15 @@ const DogGuessingGame = () => {
           {imageUrl && <
             img src={imageUrl} 
             alt="Random Dog" 
-            style={{ maxWidth: "400px", borderRadius: "5px" }}  />}
+            style={{ maxWidth: "400px", borderRadius: "5px" }} className="dog-img" />}
           <h2 className="question">Is this dog a {capitalizeWords(displayedBreed)} ?</h2>
           <div>
-            <button onClick={() => handleAnswer(true)} className="yes-btn">Yes</button>
-            <button onClick={() => handleAnswer(false)} className="no-btn">No</button>
+            <button onClick={() => handleAnswer(true)} className="btn yes-btn">Yes</button>
+            <button onClick={() => handleAnswer(false)} className="btn no-btn">No</button>
           </div>
-          {feedback && <h3>{feedback}</h3>}
-          {answered && <button onClick={getDog}>Next</button>}
-          <p>Score: {score.correct} / Attempts: {score.total} </p>
+          {feedback && <h3 className={`feedback ${feedback.includes("Correct") ? "correct" : "incorrect"}`}>{feedback}</h3>}
+          {answered && <button onClick={getDog} className="btn next-btn">Next</button>}
+          <p className="game-data">Score: {score.correct} / Attempts: {score.total} </p>
        </> 
       )}
     </div>
