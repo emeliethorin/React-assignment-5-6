@@ -8,7 +8,7 @@ import DogGuessingGame from './components/DogGuessingGame.jsx';
 function App() {
   return (
     <>
-    <BrowserRouter>
+    <BrowserRouter basename="/React-assignment-5-6">
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/registration" element={<Registration />} />
