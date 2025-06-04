@@ -9,7 +9,7 @@ import RedirectHandler from './RedirectHandler.jsx';
 function App() {
   return (
     <>
-    <BrowserRouter basename="/react-assignment-5-6">
+    <BrowserRouter basename="/React-assignment-5-6">
     <RedirectHandler />
         <Routes>
           <Route path="/" element={<Home />} />
