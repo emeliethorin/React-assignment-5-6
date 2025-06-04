@@ -3,12 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404</title>
+    <title>Redirecting</title>
 </head>
 <body>
     <script>
-        sessionStorage.redirect = location.pathname;
-        window.location.href = '/React-assignment-5-6/';
+        const basename = "/React-assignment-5-6";
+        const path = location.pathname.replace(/^\/+/, ""); //remove leading slashes
+
+        // Remove all leading repetitations of the basename
+        let cleanPath = path;
+        while (cleanPath.startsWith(basename.replace(/^\/+/, ""))) {
+            cleanPath = cleanPath.slice(basename.length).replace(/^\/+/, "");
+        }
+
+        sessionStorage.redirect = "/" + cleanPath;
+        window.location.href = basename + "/";
     </script>
 </body>
 </html>
