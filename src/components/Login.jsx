@@ -67,7 +67,7 @@ function Login() {
                 </div>
                 {error && <p style={{ color: "red"}}>{error}</p>}
                 <button type="submit" className="btn">Login</button>
-                <p><a href="/Registration">Don't have an account? Register here</a></p>
+                <p><Link to="/registration">Don't have an account? Register here</Link></p>
 
             </form>
         </div>

@@ -73,7 +73,7 @@ function RegistrationForm() {
                         )}
 
                         <button type="submit" className="btn">Register</button>
-                        <p><a href="/Login">Already have an account? Login here</a></p>
+                        <p><Link to="/login">Already have an account? Login here</Link></p>
 
                     </form>
             </div>
