@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import '../Form.css'
+import '../Form.css';
+import { Link } from "react-router-dom";
 
 function RegistrationForm() {
     const navigate = useNavigate();
